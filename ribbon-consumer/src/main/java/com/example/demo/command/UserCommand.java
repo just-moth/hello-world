@@ -1,0 +1,47 @@
+package com.example.demo.command;
+
+import com.example.demo.entity.User;
+import com.netflix.hystrix.HystrixCommand;
+import com.netflix.hystrix.HystrixCommandGroupKey;
+import com.netflix.hystrix.HystrixCommandKey;
+import com.netflix.hystrix.HystrixThreadPoolKey;
+import org.springframework.web.client.RestTemplate;
+
+/**
+ * @author： lxh
+ * @description：
+ * @created: 11:17 2018/1/30
+ * @modified by:
+ */
+public class UserCommand extends HystrixCommand<User> {
+
+    private RestTemplate restTemplate;
+    private Long id;
+
+    public UserCommand() {
+        super(Setter.withGroupKey(HystrixCommandGroupKey.Factory.asKey("GroupName"))
+            .andCommandKey(HystrixCommandKey.Factory.asKey("CommandName"))
+            .andThreadPoolKey(HystrixThreadPoolKey.Factory.asKey("ThreadPoolKey")));
+    }
+
+    public UserCommand(Setter setter, RestTemplate restTemplate, Long id) {
+        super(setter);
+        this.restTemplate = restTemplate;
+        this.id = id;
+    }
+
+    @Override
+    protected User run() throws Exception {
+        return restTemplate.getForObject("http://USER-SERVICE/users/{1}",User.class,id);
+    }
+
+    @Override
+    protected User getFallback() {
+        return new User();
+    }
+
+    @Override
+    protected String getCacheKey() {
+        return String.valueOf(id);
+    }
+}
