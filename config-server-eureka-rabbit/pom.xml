@@ -5,10 +5,10 @@
     <modelVersion>4.0.0</modelVersion>
     <packaging>jar</packaging>
 
-    <artifactId>api-gateway-dynamic-route</artifactId>
-    <name>api-gateway-dynamic-route</name>
+    <artifactId>config-server-eureka-rabbit</artifactId>
+    <name>config-server-eureka-rabbit</name>
 
-    <description>api-gateway-dynamic-route for spring cloud</description>
+    <description>config-server-eureka-rabbit for spring cloud</description>
 
     <parent>
         <artifactId>demo</artifactId>
@@ -16,11 +16,10 @@
         <version>0.0.1-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
-
     <dependencies>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-zuul</artifactId>
+            <artifactId>spring-cloud-config-server</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -28,7 +27,7 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-config</artifactId>
+            <artifactId>spring-cloud-starter-bus-amqp</artifactId>
         </dependency>
     </dependencies>
 

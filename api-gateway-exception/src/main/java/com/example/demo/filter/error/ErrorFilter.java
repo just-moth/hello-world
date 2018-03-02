@@ -1,11 +1,9 @@
-package com.example.demo.errorFilter;
+package com.example.demo.filter.error;
 
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
-import com.netflix.zuul.exception.ZuulException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.cloud.netflix.zuul.util.ZuulRuntimeException;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletResponse;
@@ -13,13 +11,15 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * @author： lxh
  * @description：
- * @created: 2018/2/8 15:49
+ * 捕获为处理的异常统一做一些处理,让'SendErrorFilter'可以正确的返回异常信息
+ * 当时'POST'过滤器抛出的话,错误信息会让'ErrorExtFilter'返回异常信息
+ * @created: 2018/2/24 15:45
  * @modified by:
  */
 @Component
 public class ErrorFilter extends ZuulFilter {
 
-    Logger log = LoggerFactory.getLogger(ErrorFilter.class);
+    private static final Logger log = LoggerFactory.getLogger(ErrorFilter.class);
 
     @Override
     public String filterType() {
@@ -39,11 +39,10 @@ public class ErrorFilter extends ZuulFilter {
     @Override
     public Object run() {
         RequestContext ctx = RequestContext.getCurrentContext();
-        Throwable throwable = RequestContext.getCurrentContext().getThrowable();
-        log.error("this is a ErrorFilter : {}", throwable.getCause().getMessage());
+        Throwable throwable = ctx.getThrowable();
+        log.error("this is a ErrorFilter : {}" ,throwable.getCause().getMessage());
         ctx.set("error.status_code", HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
         ctx.set("error.exception", throwable.getCause());
         return null;
     }
-
 }

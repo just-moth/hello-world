@@ -22,6 +22,14 @@
 		<module>config-server-eureka</module>
 		<module>config-client-eureka</module>
 		<module>api-gateway-dynamic-route</module>
+		<module>api-gateway-dynamic-filter</module>
+        <module>api-gateway-exception</module>
+        <module>rabbitmq-hello</module>
+		<module>config-server-eureka-rabbit</module>
+        <module>config-client-eureka-rabbit</module>
+        <module>config-server-eureka-kafka</module>
+        <module>config-client-eureka-kafka</module>
+		<module>stream-hello</module>
 	</modules>
 	<packaging>pom</packaging>
 
@@ -31,7 +39,7 @@
 	<parent>
 		<groupId>org.springframework.cloud</groupId>
 		<artifactId>spring-cloud-starter-parent</artifactId>
-		<version>Dalston.SR1</version>
+		<version>Dalston.SR5</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
@@ -45,10 +53,12 @@
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter</artifactId>
+			<optional>true</optional>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
+			<optional>true</optional>
 		</dependency>
 		<dependency>
 			<groupId>org.projectlombok</groupId>

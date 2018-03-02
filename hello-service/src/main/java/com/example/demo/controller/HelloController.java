@@ -33,7 +33,7 @@ public class HelloController {
 
         int sleepTime = new Random().nextInt(3000);
         logger.info("sleepTime:" + sleepTime);
-        Thread.sleep(sleepTime);
+        //Thread.sleep(sleepTime);
 
         /*ServiceInstance instance = discoveryClient.getLocalServiceInstance();
         logger.info("/hello,host:{},service_id:{}",instance.getHost(),instance.getServiceId());*/

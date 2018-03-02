@@ -1,4 +1,4 @@
-package com.example.demo.errorFilter;
+package com.example.demo.filter;
 
 import com.netflix.zuul.FilterProcessor;
 import com.netflix.zuul.ZuulFilter;
@@ -6,12 +6,12 @@ import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
 
 /**
- * @author 翟永超
- * @create 2016/12/15.
- * @blog http://blog.didispace.com
+ * @author： lxh
+ * @description：
+ * @created: 2018/2/24 15:56
+ * @modified by:
  */
-public class DidiFilterProcessor extends FilterProcessor {
-
+public class TestFilterProcessor extends FilterProcessor {
     @Override
     public Object processZuulFilter(ZuulFilter filter) throws ZuulException {
         try {
@@ -23,5 +23,4 @@ public class DidiFilterProcessor extends FilterProcessor {
             throw e;
         }
     }
-
 }
