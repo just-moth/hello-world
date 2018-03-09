@@ -30,6 +30,9 @@
         <module>config-server-eureka-kafka</module>
         <module>config-client-eureka-kafka</module>
 		<module>stream-hello</module>
+        <module>stream-producer</module>
+		<module>stream-consumer</module>
+		<module>common</module>
 	</modules>
 	<packaging>pom</packaging>
 
@@ -75,10 +78,18 @@
 	<build>
 		<plugins>
 			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+					<encoding>${project.build.sourceEncoding}</encoding>
+					<showWarnings>false</showWarnings>
+					<showDeprecation>false</showDeprecation>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
+
 
 </project>

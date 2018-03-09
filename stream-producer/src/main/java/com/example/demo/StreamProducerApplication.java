@@ -11,8 +11,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @modified by:
  */
 @SpringBootApplication
-public class StreamHelloApplication {
+public class StreamProducerApplication {
     public static void main(String[] args) {
-        SpringApplication.run(StreamHelloApplication.class, args);
+        SpringApplication.run(StreamProducerApplication.class, args);
     }
 }

@@ -52,7 +52,7 @@ public class AccessFilter extends ZuulFilter {
         RequestContext ctx = RequestContext.getCurrentContext();
         HttpServletRequest request = ctx.getRequest();
 
-        logger.info("send{} request to {}",request.getMethod(),request.getRequestURI());
+        logger.info("sender{} request to {}",request.getMethod(),request.getRequestURI());
 
         String accessToken = request.getParameter("accessToken");
         if(accessToken == null){
